@@ -3,14 +3,27 @@
 # Concepts: Dictionary, List, Data Structures
 # ============================================================
 
-from service import DrivingLicense, Passport, IncomeCertificate, RationCard
+from service import (
+    DrivingLicense, Passport, IncomeCertificate, RationCard,
+    AadhaarCard, CasteCertificate, CommunityCertificate,
+    BirthCertificate, DeathCertificate, ResidenceCertificate,
+    PANCard, VoterIDCard,
+)
 
-# ── Service Registry (Dictionary Data Structure) ───────────
+# -- Service Registry (Dictionary Data Structure) -------------
 SERVICE_DB: dict = {
     "1": DrivingLicense(),
     "2": Passport(),
     "3": IncomeCertificate(),
     "4": RationCard(),
+    "5": AadhaarCard(),
+    "6": CasteCertificate(),
+    "7": CommunityCertificate(),
+    "8": BirthCertificate(),
+    "9": DeathCertificate(),
+    "10": ResidenceCertificate(),
+    "11": PANCard(),
+    "12": VoterIDCard(),
 }
 
 # ── Application Records (Dictionary) ───────────────────────

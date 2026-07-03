@@ -92,7 +92,7 @@ class DocumentStack:
         return list(self.__stack)
 
     def display(self):
-        print("\n  ── Uploaded Documents ──")
+        print("\n  -- Uploaded Documents --")
         if self.is_empty():
             print("  (none)")
         else:
@@ -149,14 +149,14 @@ def recursive_search(services: list, keyword: str, index: int = 0, results: list
 # ══════════════════════════════════════════════════════════
 
 def print_banner():
-    print("\n" + "╔" + "═" * 48 + "╗")
-    print("║    SMART PUBLIC SERVICE NAVIGATOR v1.0     ║")
-    print("║        Government of India — Console App   ║")
-    print("╚" + "═" * 48 + "╝")
+    print("\n" + "+" + "=" * 48 + "+")
+    print("|    SMART PUBLIC SERVICE NAVIGATOR v1.0     |")
+    print("|        Government of India -- Console App   |")
+    print("+" + "=" * 48 + "+")
 
 
 def print_divider():
-    print("\n" + "─" * 50)
+    print("\n" + "--" * 25)
 
 
 def pause():

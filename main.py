@@ -5,7 +5,7 @@
 # ============================================================
 
 import sys
-from user import User
+from user import User 
 from navigator import Navigator
 from utils import print_banner, print_divider, clean_input
 
@@ -27,7 +27,7 @@ def register_user() -> User:
         if age_str.isdigit() and 5 <= int(age_str) <= 110:
             age = int(age_str)
             break
-        print("  [!] Please enter a valid age (5–110).")
+        print("  [!] Please enter a valid age (5-110).")
 
     district = input("  Enter your District      : ").strip()
     if not district:
@@ -47,14 +47,9 @@ def main_menu(navigator: Navigator, user: User):
         print("  [1]  View All Services")
         print("  [2]  Service Details")
         print("  [3]  Upload Documents (Stack Demo)")
-        print("  [4]  Submit Application")
-        print("  [5]  Track Application")
-        print("  [6]  Application Guidance (Recursion Demo)")
-        print("  [7]  Search Services (Recursion + Strings)")
-        print("  [8]  View All My Applications")
-        print("  [9]  String Concepts Demo")
+        print("  [4]  Application Guidance (Recursion Demo)")
         print("  [0]  Exit")
-        print("─" * 45)
+        print("--" * 22 + "-")
 
         choice = input("  Enter choice: ").strip()
 
@@ -66,23 +61,13 @@ def main_menu(navigator: Navigator, user: User):
         elif choice == "3":
             navigator.manage_documents()
         elif choice == "4":
-            navigator.submit_application()
-        elif choice == "5":
-            navigator.track_application()
-        elif choice == "6":
             navigator.show_guidance()
-        elif choice == "7":
-            navigator.search_services()
-        elif choice == "8":
-            navigator.show_all_applications()
-        elif choice == "9":
-            navigator.string_demo()
         elif choice == "0":
             print("\n  Thank you for using Smart Public Service Navigator!")
-            print("  Jai Hind! 🇮🇳\n")
+            print("  Jai Hind!\n")
             sys.exit(0)
         else:
-            print("\n  [!] Invalid option. Please choose 0–9.")
+            print("\n  [!] Invalid option. Please choose 0-4.")
 
 
 def main():

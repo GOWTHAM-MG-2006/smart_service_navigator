@@ -95,13 +95,13 @@ class Navigator:
                 uploaded = self.__doc_stack.get_all()
                 # Recursion: check missing documents recursively
                 missing = recursive_doc_check(required, uploaded)
-                print("\n  ── Document Verification ──")
+                print("\n  -- Document Verification --")
                 if missing:
                     print("  Missing Documents:")
                     for m in missing:
-                        print(f"    ✗ {m.title()}")
+                        print(f"    [X] {m.title()}")
                 else:
-                    print("  ✓ All required documents uploaded!")
+                    print("  [OK] All required documents uploaded!")
 
             elif action == "d":
                 break
@@ -125,7 +125,7 @@ class Navigator:
         if missing:
             print("\n  [!] Cannot submit. Missing documents:")
             for m in missing:
-                print(f"    ✗ {m.title()}")
+                print(f"    [X] {m.title()}")
             pause()
             return
 
@@ -155,7 +155,7 @@ class Navigator:
         print(f"  Department       : {self.__current_service.get_department()}")
         print(f"  Fee Payable      : Rs. {self.__current_service.get_fee()}")
         print(f"  Submitted On     : {timestamp}")
-        print(f"  Status           : Submitted ✓")
+        print(f"  Status           : Submitted [OK]")
         print("=" * 45)
         print(f"\n  [Save your Application ID: {app_id}]")
         pause()
@@ -170,7 +170,7 @@ class Navigator:
             print("\n  [!] Invalid choice.")
             return
 
-        # Steps depend on service — string comparison
+        # Steps depend on service -- string comparison
         name = service.get_name().lower()
 
         if "driving" in name:
@@ -207,7 +207,7 @@ class Navigator:
                 "Officer will verify details",
                 "Certificate issued within 15 working days",
             ]
-        else:
+        elif "ration" in name:
             steps = [
                 "Visit the Food & Civil Supplies Department",
                 "Fill Ration Card application form",
@@ -216,14 +216,112 @@ class Navigator:
                 "Field verification by inspector",
                 "Ration Card issued within 20 working days",
             ]
+        elif "aadhaar" in name:
+            steps = [
+                "Visit nearest Aadhaar Enrolment Centre",
+                "Fill the Aadhaar enrolment form",
+                "Submit identity proof, address proof, DOB proof",
+                "Provide biometrics (fingerprints + iris scan)",
+                "Collect acknowledgement receipt with URN",
+                "Track status on uidai.gov.in",
+                "Aadhaar card delivered by post within 60 days",
+            ]
+        elif "caste" in name:
+            steps = [
+                "Visit Tehsildar or Revenue office",
+                "Collect Caste Certificate application form",
+                "Fill personal and family details",
+                "Attach Aadhaar, address proof, parent caste certificate",
+                "Submit self-declaration affidavit",
+                "Pay Rs. 25 processing fee",
+                "Officer verifies caste records",
+                "Certificate issued within 15 working days",
+            ]
+        elif "community" in name:
+            steps = [
+                "Visit Revenue Department office",
+                "Collect Community Certificate application form",
+                "Fill personal and educational details",
+                "Attach Aadhaar, address proof, school transfer certificate",
+                "Attach parent community certificate",
+                "Submit form with Rs. 25 processing fee",
+                "Verification by Revenue Officer",
+                "Certificate issued within 15 working days",
+            ]
+        elif "birth" in name:
+            steps = [
+                "Visit Municipal Corporation or Panchayat office",
+                "Collect Birth Certificate application form",
+                "Fill child and parent details",
+                "Attach hospital discharge summary and parent Aadhaar",
+                "Attach marriage certificate of parents",
+                "Submit form with Rs. 10 fee",
+                "Record verified against hospital register",
+                "Birth Certificate issued within 7 working days",
+            ]
+        elif "death" in name:
+            steps = [
+                "Visit Municipal Corporation or Panchayat office",
+                "Collect Death Certificate application form",
+                "Fill deceased and applicant details",
+                "Attach hospital death report and Aadhaar cards",
+                "Attach address proof",
+                "Submit form with Rs. 10 fee",
+                "Record verified against hospital register",
+                "Death Certificate issued within 7 working days",
+            ]
+        elif "residence" in name or "domicile" in name:
+            steps = [
+                "Visit Tehsildar or Revenue office",
+                "Collect Residence Certificate application form",
+                "Fill personal and address details",
+                "Attach Aadhaar card and address proof",
+                "Attach electricity bill or rent agreement",
+                "Submit self-declaration affidavit",
+                "Pay Rs. 25 processing fee",
+                "Officer conducts verification",
+                "Certificate issued within 15 working days",
+            ]
+        elif "pan" in name:
+            steps = [
+                "Visit NSDL or UTIITSL portal online",
+                "Fill Form 49A for PAN application",
+                "Upload passport photo and signature",
+                "Attach Aadhaar card and DOB proof",
+                "Pay processing fee of Rs. 107 online",
+                "Submit application and collect acknowledgement",
+                "Track status on tin-nsdl.com",
+                "PAN Card delivered within 15 working days",
+            ]
+        elif "voter" in name:
+            steps = [
+                "Visit nvsp.in (National Voter Service Portal)",
+                "Fill Form 6 for new voter registration",
+                "Upload passport photo and address proof",
+                "Attach Aadhaar card and age proof",
+                "Submit application online (FREE)",
+                "BLO (Booth Level Officer) verifies address",
+                "Name added to Electoral Roll",
+                "Voter ID Card delivered within 30 days",
+            ]
+        else:
+            steps = [
+                "Visit the respective government department",
+                "Collect the application form",
+                "Fill in required personal details",
+                "Attach Aadhaar Card and address proof",
+                "Submit form to designated officer",
+                "Verification by officer",
+                "Certificate issued within the stipulated time",
+            ]
 
-        print(f"\n  ── Guidance for {service.get_name()} ──")
+        print(f"\n  -- Guidance for {service.get_name()} --")
         print("  (Steps loaded using Recursion)\n")
 
         # RECURSION used here
         display_steps(steps)
 
-        print("\n\n  ✓ End of Application Steps")
+        print("\n\n  [OK] End of Application Steps")
         pause()
 
     # ── 6. Application Tracking ─────────────────────────────
@@ -247,7 +345,7 @@ class Navigator:
             print(f"  Service         : {record['service']}")
             print(f"  Department      : {record['department']}")
             print(f"  Fee Paid        : Rs. {record['fee']}")
-            print(f"  Status          : {record['status']} ✓")
+            print(f"  Status          : {record['status']} [OK]")
             print(f"  Submitted On    : {record['submitted_on']}")
             print("  Uploaded Docs   :")
             for doc in record['documents']:
@@ -275,7 +373,7 @@ class Navigator:
         print(f"\n  Search Results for '{keyword}':")
         if results:
             for r in results:
-                print(f"    ✓ {r}")
+                print(f"    [OK] {r}")
         else:
             print("    No services matched your keyword.")
 
@@ -298,7 +396,7 @@ class Navigator:
     def string_demo(self):
         """Showcase multiple String operations."""
         print_divider()
-        print("\n  ── String Concepts Demo ──")
+        print("\n  -- String Concepts Demo --")
         sample = input("\n  Enter any text: ")
 
         print(f"\n  Original          : {sample}")
